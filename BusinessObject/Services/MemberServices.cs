@@ -113,4 +113,9 @@ public class MemberServices : IMemberServices
         // CODE HERE
         memberRepository.UpdateMember(member);
     }
+
+    public IEnumerable<Member> GetMemberList()
+    {
+        return memberRepository.GetMemberList();
+    }
 }

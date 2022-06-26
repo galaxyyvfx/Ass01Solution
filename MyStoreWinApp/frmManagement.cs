@@ -14,14 +14,6 @@ public partial class frmManagement : Form
     {
         // CODE HERE
     }
-    private Member GetMemberObject()
-    {
-        Member member = null;
-
-        // CODE HERE
-
-        return member;
-    }
     public void LoadMemberList()
     {
         // CODE HERE
@@ -31,5 +23,10 @@ public partial class frmManagement : Form
     {
         this.loginMember = loginMember;
         InitializeComponent();
+    }
+
+    private void frmManagement_Load(object sender, EventArgs e)
+    {
+        // CODE HERE    
     }
 }
