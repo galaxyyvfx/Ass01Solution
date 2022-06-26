@@ -46,7 +46,7 @@ public class MemberServices : IMemberServices
         // CODE HERE
         IEnumerable<Member> list = memberRepository.GetMemberList();
         IEnumerable<Member> result = from member in list
-                                     where member.City == City
+                                     where member.City.Contains(City)
                                      select member;
         return result;
     }
@@ -56,7 +56,7 @@ public class MemberServices : IMemberServices
         // CODE HERE
         IEnumerable<Member> list = memberRepository.GetMemberList();
         IEnumerable<Member> result = from member in list
-                                     where member.Country == Country
+                                     where member.Country.Contains(Country)
                                      select member;
         return result;
     }

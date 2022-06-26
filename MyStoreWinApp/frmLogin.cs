@@ -20,8 +20,10 @@ public partial class frmLogin : Form
         Member loginMember = memberServices.Login(email, password);
         if (loginMember != null)
         {
+            this.Hide();
             frmManagement frmManagement = new frmManagement(loginMember);
-            this.Close();
+            frmManagement.ShowDialog();
+            this.Show();
         }
         else
         {
