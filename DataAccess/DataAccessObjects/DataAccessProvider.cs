@@ -24,7 +24,27 @@ public class DataAccessProvider
     public IDataReader GetDataReader(string commandText, CommandType commandType,
                                     out SqlConnection connection, params SqlParameter[] parameters)
     {
+        // CODE HERE
         IDataReader reader = null;
+        try
+        {
+            connection = new SqlConnection(ConnectionString);
+            connection.Open();
+            var command = new SqlCommand(commandText, connection);
+            command.CommandType = commandType;
+            if (parameters != null)
+            {
+                foreach (var parameter in parameters)
+                {
+                    command.Parameters.Add(parameter);
+                }
+            }
+            reader = command.ExecuteReader();
+        } 
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
         return reader;
     }
 
@@ -32,15 +52,72 @@ public class DataAccessProvider
                         params SqlParameter[] parameters)
     {
         // CODE HERE
+        try
+        {
+            using var connection = new SqlConnection(ConnectionString);
+            connection.Open();
+            var command = new SqlCommand(commandText, connection);
+            command.CommandType = commandType;
+            if (parameters != null)
+            {
+                foreach (var parameter in parameters)
+                {
+                    command.Parameters.Add(parameter);
+                }
+            }
+            command.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
     public void Update(string commandText, CommandType commandType,
                         params SqlParameter[] parameters)
     {
         // CODE HERE
+        try
+        {
+            using var connection = new SqlConnection(ConnectionString);
+            connection.Open();
+            var command = new SqlCommand(commandText, connection);
+            command.CommandType = commandType;
+            if (parameters != null)
+            {
+                foreach (var parameter in parameters)
+                {
+                    command.Parameters.Add(parameter);
+                }
+            }
+            command.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
     public void Delete(string commandText, CommandType commandType,
                         params SqlParameter[] parameters)
     {
         // CODE HERE
+        try
+        {
+            using var connection = new SqlConnection(ConnectionString);
+            connection.Open();
+            var command = new SqlCommand(commandText, connection);
+            command.CommandType = commandType;
+            if (parameters != null)
+            {
+                foreach (var parameter in parameters)
+                {
+                    command.Parameters.Add(parameter);
+                }
+            }
+            command.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 }
