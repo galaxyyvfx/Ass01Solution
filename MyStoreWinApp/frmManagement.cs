@@ -27,14 +27,15 @@ public partial class frmManagement : Form
         Member member = null;
         try
         {
+            var currentRow = dgvMemberList.CurrentRow;
             member = new Member
             {
-                MemberID = int.Parse(txtMemberId.Text),
-                MemberName = txtMemberName.Text,
-                Email = txtEmail.Text,
-                Password = txtPassword.Text,
-                City = cboCity.Text,
-                Country = cboCountry.Text,
+                MemberID = Convert.ToInt32(currentRow.Cells[0].Value),
+                MemberName = currentRow.Cells[1].Value.ToString(),
+                Email = currentRow.Cells[2].Value.ToString(),
+                Password = currentRow.Cells[3].Value.ToString(),
+                City = currentRow.Cells[4].Value.ToString(),
+                Country = currentRow.Cells[5].Value.ToString(),
             };
         }
         catch (Exception ex)
@@ -48,35 +49,27 @@ public partial class frmManagement : Form
         // CODE HERE
         try
         {
-            if (list.Count() > 0)
-            {
-                source = new BindingSource();
-                source.DataSource = list;
+            Console.WriteLine($"List count: {list.Count()}");
+            source = new BindingSource();
+            source.DataSource = list;
 
-                txtMemberId.DataBindings.Clear();
-                txtMemberName.DataBindings.Clear();
-                txtEmail.DataBindings.Clear();
-                txtPassword.DataBindings.Clear();
-                cboCity.DataBindings.Clear();
-                cboCountry.DataBindings.Clear();
+            txtEmail.DataBindings.Clear();
+            txtPassword.DataBindings.Clear();
 
-                txtMemberId.DataBindings.Add("Text", source, "MemberID");
-                txtMemberName.DataBindings.Add("Text", source, "MemberName");
-                txtEmail.DataBindings.Add("Text", source, "Email");
-                txtPassword.DataBindings.Add("Text", source, "Password");
-                cboCity.DataBindings.Add("Text", source, "City");
-                cboCountry.DataBindings.Add("Text", source, "Country");
+            txtEmail.DataBindings.Add("Text", source, "Email");
+            txtPassword.DataBindings.Add("Text", source, "Password");
 
-                dgvMemberList.DataSource = null;
-                dgvMemberList.DataSource = list;
+            dgvMemberList.DataSource = null;
+            dgvMemberList.DataSource = source;
 
-
-                btnDelete.Enabled = true;
-            }
-            else
+            if (list.Count() == 0)
             {
                 ClearText();
                 btnDelete.Enabled = false;
+            }
+            else
+            {
+                btnDelete.Enabled = true;
             }
         }
         catch (Exception ex)
@@ -90,13 +83,37 @@ public partial class frmManagement : Form
         this.loginMember = loginMember;
         InitializeComponent();
 
+        CountryToCity[""] = new string[] {
+                "",
+                "Hanoi",
+                "Ho Chi Minh",
+                "Da Nang",
+                "Hue",
+                "New York",
+                "Washington",
+                "Los Angeles",
+                "San Francisco",
+                "Las Vegas",
+                "Chicago",
+                "Shanghai",
+                "Beijing",
+                "Guangzhou",
+                "Tianjin",
+                "Chongqing",
+                "Sydney",
+                "Melbourne",
+                "Perth",
+                "Brisbane",
+            };
         CountryToCity["Vietnam"] = new string[] {
+                "",
                 "Hanoi",
                 "Ho Chi Minh",
                 "Da Nang",
                 "Hue",
             };
         CountryToCity["America"] = new string[] {
+                "",
                 "New York",
                 "Washington",
                 "Los Angeles",
@@ -106,6 +123,7 @@ public partial class frmManagement : Form
             };
         CountryToCity["China"] = new string[]
         {
+                "",
                 "Shanghai",
                 "Beijing",
                 "Guangzhou",
@@ -114,6 +132,7 @@ public partial class frmManagement : Form
         };
         CountryToCity["Australia"] = new string[]
         {
+                "",
                 "Sydney",
                 "Melbourne",
                 "Perth",
@@ -182,7 +201,7 @@ public partial class frmManagement : Form
 
     private void btnSearch_Click(object sender, EventArgs e)
     {
-        if (string.IsNullOrEmpty(txtMemberId.Text))
+        if (!string.IsNullOrEmpty(txtMemberId.Text))
         {
             try
             {
@@ -200,14 +219,22 @@ public partial class frmManagement : Form
             try
             {
                 var searchNames = memberServices.SearchMemberByName(txtMemberName.Text);
-                var searchCity = memberServices.FilterMemberByCity(cboCity.Text.Trim());
-                var searchCountry = memberServices.FilterMemberByCountry(cboCountry.Text.Trim());
+                var searchCity = memberServices.FilterMemberByCity(cboCity.Text);
+                var searchCountry = memberServices.FilterMemberByCountry(cboCountry.Text);
                 var resultSet = from names in searchNames
                                 join cities in searchCity
                                     on names.MemberID equals cities.MemberID
                                 join countries in searchCountry
                                     on names.MemberID equals countries.MemberID
-                                select names;
+                                select new Member
+                                {
+                                    MemberID = names.MemberID,
+                                    MemberName = names.MemberName,
+                                    City = names.City,
+                                    Country = names.Country,
+                                    Email = names.Email,
+                                    Password = names.Password,
+                                };
                 LoadMemberList(resultSet);
             }
             catch (Exception ex)

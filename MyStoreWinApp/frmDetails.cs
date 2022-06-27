@@ -48,16 +48,23 @@ namespace MyStoreWinApp
 
         private void frmDetails_Load(object sender, EventArgs e)
         {
-            cboCountry.SelectedIndex = 0;
-            LoadCityComboBox();
-            if (IsUpdate == true)
+            try
             {
-                txtMemberId.Text = memberInfo.MemberID.ToString();
-                txtMemberName.Text = memberInfo.MemberName;
-                txtEmail.Text = memberInfo.Email;
-                txtPassword.Text = memberInfo.Password;
-                cboCity.Text = memberInfo.City;
-                cboCountry.Text = memberInfo.Country;
+                cboCountry.SelectedIndex = 0;
+                LoadCityComboBox();
+                if (IsUpdate == true)
+                {
+                    txtMemberId.Text = memberInfo.MemberID.ToString();
+                    txtMemberName.Text = memberInfo.MemberName;
+                    txtEmail.Text = memberInfo.Email;
+                    txtPassword.Text = memberInfo.Password;
+                    cboCity.Text = memberInfo.City;
+                    cboCountry.Text = memberInfo.Country;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Load Details form");
             }
         }
         private void btnSave_Click(object sender, EventArgs e)

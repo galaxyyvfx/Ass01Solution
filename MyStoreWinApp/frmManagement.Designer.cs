@@ -199,6 +199,7 @@
             this.cboCountry.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cboCountry.FormattingEnabled = true;
             this.cboCountry.Items.AddRange(new object[] {
+            "",
             "Vietnam",
             "America",
             "China",

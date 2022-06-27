@@ -103,8 +103,8 @@ public class MemberDAO : BaseDAO
     public void InsertMember(Member member)
     {
         // CODE HERE
-        string sql = "insert Member values(@MemberId, @MemberName, " +
-            "@Email, @Password, @City, @Country)";
+        string sql = "insert Member(MemberName, Email, Password, City, Country) " +
+            "values (@MemberName, @Email, @Password, @City, @Country)";
         try
         {
             Member checkMember = GetMemberById(member.MemberID);
