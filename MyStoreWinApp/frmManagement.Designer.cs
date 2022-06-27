@@ -39,19 +39,21 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnInsert = new System.Windows.Forms.Button();
             this.lblCity = new System.Windows.Forms.Label();
-            this.cboCity = new System.Windows.Forms.ComboBox();
             this.lblCountry = new System.Windows.Forms.Label();
-            this.cboCountry = new System.Windows.Forms.ComboBox();
             this.txtMemberName = new System.Windows.Forms.TextBox();
             this.txtMemberId = new System.Windows.Forms.TextBox();
             this.lblMemberName = new System.Windows.Forms.Label();
             this.lblMemberId = new System.Windows.Forms.Label();
+            this.txtCountry = new System.Windows.Forms.TextBox();
+            this.txtCity = new System.Windows.Forms.TextBox();
             this.grpManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMemberList)).BeginInit();
             this.SuspendLayout();
             // 
             // grpManagement
             // 
+            this.grpManagement.Controls.Add(this.txtCity);
+            this.grpManagement.Controls.Add(this.txtCountry);
             this.grpManagement.Controls.Add(this.txtPassword);
             this.grpManagement.Controls.Add(this.lblPassword);
             this.grpManagement.Controls.Add(this.txtEmail);
@@ -62,9 +64,7 @@
             this.grpManagement.Controls.Add(this.btnDelete);
             this.grpManagement.Controls.Add(this.btnInsert);
             this.grpManagement.Controls.Add(this.lblCity);
-            this.grpManagement.Controls.Add(this.cboCity);
             this.grpManagement.Controls.Add(this.lblCountry);
-            this.grpManagement.Controls.Add(this.cboCountry);
             this.grpManagement.Controls.Add(this.txtMemberName);
             this.grpManagement.Controls.Add(this.txtMemberId);
             this.grpManagement.Controls.Add(this.lblMemberName);
@@ -175,15 +175,6 @@
             this.lblCity.TabIndex = 7;
             this.lblCity.Text = "City";
             // 
-            // cboCity
-            // 
-            this.cboCity.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cboCity.FormattingEnabled = true;
-            this.cboCity.Location = new System.Drawing.Point(543, 65);
-            this.cboCity.Name = "cboCity";
-            this.cboCity.Size = new System.Drawing.Size(228, 36);
-            this.cboCity.TabIndex = 6;
-            // 
             // lblCountry
             // 
             this.lblCountry.AutoSize = true;
@@ -193,15 +184,6 @@
             this.lblCountry.Size = new System.Drawing.Size(82, 28);
             this.lblCountry.TabIndex = 5;
             this.lblCountry.Text = "Country";
-            // 
-            // cboCountry
-            // 
-            this.cboCountry.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cboCountry.FormattingEnabled = true;
-            this.cboCountry.Location = new System.Drawing.Point(543, 18);
-            this.cboCountry.Name = "cboCountry";
-            this.cboCountry.Size = new System.Drawing.Size(228, 36);
-            this.cboCountry.TabIndex = 4;
             // 
             // txtMemberName
             // 
@@ -239,6 +221,22 @@
             this.lblMemberId.TabIndex = 0;
             this.lblMemberId.Text = "Member ID";
             // 
+            // txtCountry
+            // 
+            this.txtCountry.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtCountry.Location = new System.Drawing.Point(543, 20);
+            this.txtCountry.Name = "txtCountry";
+            this.txtCountry.Size = new System.Drawing.Size(228, 34);
+            this.txtCountry.TabIndex = 18;
+            // 
+            // txtCity
+            // 
+            this.txtCity.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtCity.Location = new System.Drawing.Point(543, 65);
+            this.txtCity.Name = "txtCity";
+            this.txtCity.Size = new System.Drawing.Size(228, 34);
+            this.txtCity.TabIndex = 19;
+            // 
             // frmManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -258,7 +256,6 @@
         #endregion
 
         private GroupBox grpManagement;
-        private ComboBox cboCountry;
         private TextBox txtMemberName;
         private TextBox txtMemberId;
         private Label lblMemberName;
@@ -269,11 +266,12 @@
         private Button btnDelete;
         private Button btnInsert;
         private Label lblCity;
-        private ComboBox cboCity;
         private Label lblCountry;
         private TextBox txtEmail;
         private Label lblEmail;
         private TextBox txtPassword;
         private Label lblPassword;
+        private TextBox txtCity;
+        private TextBox txtCountry;
     }
 }

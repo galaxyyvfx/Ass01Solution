@@ -31,8 +31,6 @@
             this.grpDetails = new System.Windows.Forms.GroupBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.cboCity = new System.Windows.Forms.ComboBox();
-            this.cboCountry = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblCountry = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -41,15 +39,17 @@
             this.lblEmail = new System.Windows.Forms.Label();
             this.txtMemberName = new System.Windows.Forms.TextBox();
             this.lblMemberName = new System.Windows.Forms.Label();
+            this.txtCountry = new System.Windows.Forms.TextBox();
+            this.txtCity = new System.Windows.Forms.TextBox();
             this.grpDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpDetails
             // 
+            this.grpDetails.Controls.Add(this.txtCity);
+            this.grpDetails.Controls.Add(this.txtCountry);
             this.grpDetails.Controls.Add(this.btnCancel);
             this.grpDetails.Controls.Add(this.btnSave);
-            this.grpDetails.Controls.Add(this.cboCity);
-            this.grpDetails.Controls.Add(this.cboCountry);
             this.grpDetails.Controls.Add(this.label1);
             this.grpDetails.Controls.Add(this.lblCountry);
             this.grpDetails.Controls.Add(this.txtPassword);
@@ -85,24 +85,6 @@
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // cboCity
-            // 
-            this.cboCity.FormattingEnabled = true;
-            this.cboCity.Location = new System.Drawing.Point(418, 63);
-            this.cboCity.Name = "cboCity";
-            this.cboCity.Size = new System.Drawing.Size(180, 28);
-            this.cboCity.TabIndex = 9;
-            this.cboCity.SelectedIndexChanged += new System.EventHandler(this.cboCity_SelectedIndexChanged);
-            // 
-            // cboCountry
-            // 
-            this.cboCountry.FormattingEnabled = true;
-            this.cboCountry.Location = new System.Drawing.Point(418, 19);
-            this.cboCountry.Name = "cboCountry";
-            this.cboCountry.Size = new System.Drawing.Size(180, 28);
-            this.cboCountry.TabIndex = 8;
-            this.cboCountry.SelectedIndexChanged += new System.EventHandler(this.cboCountry_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -178,6 +160,20 @@
             this.lblMemberName.Text = "Member Name";
             this.lblMemberName.Click += new System.EventHandler(this.lblMemberName_Click);
             // 
+            // txtCountry
+            // 
+            this.txtCountry.Location = new System.Drawing.Point(410, 20);
+            this.txtCountry.Name = "txtCountry";
+            this.txtCountry.Size = new System.Drawing.Size(180, 27);
+            this.txtCountry.TabIndex = 12;
+            // 
+            // txtCity
+            // 
+            this.txtCity.Location = new System.Drawing.Point(410, 64);
+            this.txtCity.Name = "txtCity";
+            this.txtCity.Size = new System.Drawing.Size(180, 27);
+            this.txtCity.TabIndex = 13;
+            // 
             // frmDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -196,8 +192,6 @@
         #endregion
 
         private GroupBox grpDetails;
-        private ComboBox cboCity;
-        private ComboBox cboCountry;
         private Label label1;
         private Label lblCountry;
         private TextBox txtPassword;
@@ -208,5 +202,7 @@
         private Label lblMemberName;
         private Button btnCancel;
         private Button btnSave;
+        private TextBox txtCity;
+        private TextBox txtCountry;
     }
 }
