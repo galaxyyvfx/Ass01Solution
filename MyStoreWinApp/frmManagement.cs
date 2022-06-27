@@ -1,6 +1,7 @@
 ﻿using BusinessObject.Services;
 
 using DataAccess.Entities;
+using Microsoft.Extensions.Configuration;
 
 namespace MyStoreWinApp;
 
@@ -9,6 +10,7 @@ public partial class frmManagement : Form
     private Member loginMember;
     private MemberServices memberServices = new MemberServices();
 
+    private bool IsAdmin = false;
     Dictionary<string, string[]> CountryToCity = new Dictionary<string, string[]>();
 
     private BindingSource source;
@@ -17,10 +19,22 @@ public partial class frmManagement : Form
         // CODE HERE
         txtMemberId.Text = string.Empty;
         txtMemberName.Text = string.Empty;
-        txtEmail.Text = string.Empty;
-        txtPassword.Text = string.Empty;
         cboCity.SelectedIndex = 0;
         cboCountry.SelectedIndex = 0;
+    }
+    private void CheckAuthentication()
+    {
+        IConfiguration config = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("AppSettings.json", true, true)
+            .Build();
+
+        string adminEmail = config["DefaultAccounts:Email"];
+
+        if (loginMember.Email == adminEmail)
+        {
+            IsAdmin = true;
+        }
     }
     private Member GetMemberObject()
     {
@@ -49,15 +63,16 @@ public partial class frmManagement : Form
         // CODE HERE
         try
         {
-            Console.WriteLine($"List count: {list.Count()}");
             source = new BindingSource();
-            source.DataSource = list;
-
-            txtEmail.DataBindings.Clear();
-            txtPassword.DataBindings.Clear();
-
-            txtEmail.DataBindings.Add("Text", source, "Email");
-            txtPassword.DataBindings.Add("Text", source, "Password");
+            if (IsAdmin == false)
+            {
+                source.DataSource =
+                    new[] { memberServices.SearchMemberById(loginMember.MemberID) };
+            }
+            else
+            {
+                source.DataSource = list;
+            }
 
             dgvMemberList.DataSource = null;
             dgvMemberList.DataSource = source;
@@ -76,6 +91,7 @@ public partial class frmManagement : Form
         {
             MessageBox.Show(ex.Message, "Load car list");
         }
+
     }
     
     public frmManagement(Member loginMember)
@@ -142,6 +158,8 @@ public partial class frmManagement : Form
 
     private void frmManagement_Load(object sender, EventArgs e)
     {
+        CheckAuthentication();
+
         btnDelete.Enabled = false;
 
         cboCountry.SelectedIndex = 0;

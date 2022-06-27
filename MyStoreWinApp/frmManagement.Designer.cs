@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.grpManagement = new System.Windows.Forms.GroupBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.lblPassword = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.lblEmail = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
             this.dgvMemberList = new System.Windows.Forms.DataGridView();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -52,10 +48,6 @@
             // 
             // grpManagement
             // 
-            this.grpManagement.Controls.Add(this.txtPassword);
-            this.grpManagement.Controls.Add(this.lblPassword);
-            this.grpManagement.Controls.Add(this.txtEmail);
-            this.grpManagement.Controls.Add(this.lblEmail);
             this.grpManagement.Controls.Add(this.btnLogout);
             this.grpManagement.Controls.Add(this.dgvMemberList);
             this.grpManagement.Controls.Add(this.btnSearch);
@@ -71,50 +63,14 @@
             this.grpManagement.Controls.Add(this.lblMemberId);
             this.grpManagement.Location = new System.Drawing.Point(12, 12);
             this.grpManagement.Name = "grpManagement";
-            this.grpManagement.Size = new System.Drawing.Size(797, 547);
+            this.grpManagement.Size = new System.Drawing.Size(797, 504);
             this.grpManagement.TabIndex = 0;
             this.grpManagement.TabStop = false;
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtPassword.Location = new System.Drawing.Point(543, 110);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(228, 34);
-            this.txtPassword.TabIndex = 17;
-            // 
-            // lblPassword
-            // 
-            this.lblPassword.AutoSize = true;
-            this.lblPassword.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblPassword.Location = new System.Drawing.Point(416, 113);
-            this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(93, 28);
-            this.lblPassword.TabIndex = 16;
-            this.lblPassword.Text = "Password";
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtEmail.Location = new System.Drawing.Point(153, 110);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(228, 34);
-            this.txtEmail.TabIndex = 15;
-            // 
-            // lblEmail
-            // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblEmail.Location = new System.Drawing.Point(6, 113);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(59, 28);
-            this.lblEmail.TabIndex = 14;
-            this.lblEmail.Text = "Email";
             // 
             // btnLogout
             // 
             this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnLogout.Location = new System.Drawing.Point(344, 494);
+            this.btnLogout.Location = new System.Drawing.Point(344, 447);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(108, 47);
             this.btnLogout.TabIndex = 13;
@@ -125,7 +81,7 @@
             // dgvMemberList
             // 
             this.dgvMemberList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMemberList.Location = new System.Drawing.Point(0, 224);
+            this.dgvMemberList.Location = new System.Drawing.Point(0, 177);
             this.dgvMemberList.Name = "dgvMemberList";
             this.dgvMemberList.RowHeadersWidth = 51;
             this.dgvMemberList.RowTemplate.Height = 29;
@@ -135,7 +91,7 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSearch.Location = new System.Drawing.Point(601, 161);
+            this.btnSearch.Location = new System.Drawing.Point(601, 114);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(108, 47);
             this.btnSearch.TabIndex = 11;
@@ -146,7 +102,7 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDelete.Location = new System.Drawing.Point(341, 161);
+            this.btnDelete.Location = new System.Drawing.Point(341, 114);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(108, 47);
             this.btnDelete.TabIndex = 10;
@@ -157,7 +113,7 @@
             // btnInsert
             // 
             this.btnInsert.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnInsert.Location = new System.Drawing.Point(88, 161);
+            this.btnInsert.Location = new System.Drawing.Point(88, 114);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(108, 47);
             this.btnInsert.TabIndex = 8;
@@ -250,7 +206,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 571);
+            this.ClientSize = new System.Drawing.Size(821, 528);
             this.Controls.Add(this.grpManagement);
             this.Name = "frmManagement";
             this.Text = "Member Management";
@@ -278,9 +234,5 @@
         private Label lblCity;
         private ComboBox cboCity;
         private Label lblCountry;
-        private TextBox txtEmail;
-        private Label lblEmail;
-        private TextBox txtPassword;
-        private Label lblPassword;
     }
 }

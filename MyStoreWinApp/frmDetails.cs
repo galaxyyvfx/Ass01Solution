@@ -73,7 +73,6 @@ namespace MyStoreWinApp
             {
                 var member = new Member
                 {
-                    MemberID = int.Parse(txtMemberId.Text),
                     MemberName = txtMemberName.Text,
                     Email = txtEmail.Text,
                     Password = txtPassword.Text,
@@ -86,6 +85,7 @@ namespace MyStoreWinApp
                 }
                 else
                 {
+                    member.MemberID = int.Parse(txtMemberId.Text);
                     memberServices.UpdateMember(member);
                 }
                 Close();

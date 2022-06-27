@@ -62,15 +62,22 @@ public class MemberServices : IMemberServices
         Member loginMember = null;
         if (checkAdminLogin(email, password) == false)
         {
-            IEnumerable<Member> list = memberRepository.GetMemberList();
-            loginMember = (from member in list
-                                  where (member.Email == email)
-                                  && (member.Password == password)
-                                  select member).First();
-            if (loginMember == null)
+            try
             {
-                throw new Exception("Incorrect Username or Password!");
+                IEnumerable<Member> list = memberRepository.GetMemberList();
+                loginMember = (from member in list
+                               where (member.Email == email)
+                               && (member.Password == password)
+                               select member).First();
+            } 
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("no elements"))
+                {
+                    throw new Exception("Incorrect Username or Password!");
+                }
             }
+            
         }
         else
         {
