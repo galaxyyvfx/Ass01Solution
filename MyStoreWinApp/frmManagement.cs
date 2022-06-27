@@ -9,6 +9,8 @@ public partial class frmManagement : Form
     private Member loginMember;
     private MemberServices memberServices = new MemberServices();
 
+    Dictionary<string, string[]> CountryToCity = new Dictionary<string, string[]>();
+
     private BindingSource source;
     private void ClearText()
     {
@@ -46,19 +48,35 @@ public partial class frmManagement : Form
         // CODE HERE
         try
         {
-            source = new BindingSource();
-            source.DataSource = list;
-
-            dgvMemberList.DataSource = null;
-            dgvMemberList.DataSource = list;
-            if (list.Count() == 0)
+            if (list.Count() > 0)
             {
-                ClearText();
-                btnDelete.Enabled = false;
+                source = new BindingSource();
+                source.DataSource = list;
+
+                txtMemberId.DataBindings.Clear();
+                txtMemberName.DataBindings.Clear();
+                txtEmail.DataBindings.Clear();
+                txtPassword.DataBindings.Clear();
+                cboCity.DataBindings.Clear();
+                cboCountry.DataBindings.Clear();
+
+                txtMemberId.DataBindings.Add("Text", source, "MemberID");
+                txtMemberName.DataBindings.Add("Text", source, "MemberName");
+                txtEmail.DataBindings.Add("Text", source, "Email");
+                txtPassword.DataBindings.Add("Text", source, "Password");
+                cboCity.DataBindings.Add("Text", source, "City");
+                cboCountry.DataBindings.Add("Text", source, "Country");
+
+                dgvMemberList.DataSource = null;
+                dgvMemberList.DataSource = list;
+
+
+                btnDelete.Enabled = true;
             }
             else
             {
-                btnDelete.Enabled = true;
+                ClearText();
+                btnDelete.Enabled = false;
             }
         }
         catch (Exception ex)
@@ -71,11 +89,45 @@ public partial class frmManagement : Form
     {
         this.loginMember = loginMember;
         InitializeComponent();
+
+        CountryToCity["Vietnam"] = new string[] {
+                "Hanoi",
+                "Ho Chi Minh",
+                "Da Nang",
+                "Hue",
+            };
+        CountryToCity["America"] = new string[] {
+                "New York",
+                "Washington",
+                "Los Angeles",
+                "San Francisco",
+                "Las Vegas",
+                "Chicago",
+            };
+        CountryToCity["China"] = new string[]
+        {
+                "Shanghai",
+                "Beijing",
+                "Guangzhou",
+                "Tianjin",
+                "Chongqing",
+        };
+        CountryToCity["Australia"] = new string[]
+        {
+                "Sydney",
+                "Melbourne",
+                "Perth",
+                "Brisbane",
+        };
     }
 
     private void frmManagement_Load(object sender, EventArgs e)
     {
         btnDelete.Enabled = false;
+
+        cboCountry.SelectedIndex = 0;
+        LoadCityComboBox();
+
         var memberList = memberServices.GetMemberList();
         LoadMemberList(memberList);
         dgvMemberList.CellDoubleClick += DgvMemberList_CellDoubleClick;
@@ -168,5 +220,23 @@ public partial class frmManagement : Form
     private void btnLogout_Click(object sender, EventArgs e)
     {
         this.Close();
+    }
+
+    private void LoadCityComboBox()
+    {
+        cboCity.Items.Clear();
+        if (cboCountry.SelectedIndex >= 0)
+        {
+            string country = cboCountry.Text;
+            foreach (string city in CountryToCity[country])
+            {
+                cboCity.Items.Add(city);
+            }
+            cboCity.SelectedIndex = 0;
+        }
+    }
+    private void cboCountry_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        LoadCityComboBox();
     }
 }

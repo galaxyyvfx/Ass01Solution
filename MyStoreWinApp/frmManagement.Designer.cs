@@ -198,10 +198,16 @@
             // 
             this.cboCountry.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cboCountry.FormattingEnabled = true;
+            this.cboCountry.Items.AddRange(new object[] {
+            "Vietnam",
+            "America",
+            "China",
+            "Australia"});
             this.cboCountry.Location = new System.Drawing.Point(543, 18);
             this.cboCountry.Name = "cboCountry";
             this.cboCountry.Size = new System.Drawing.Size(228, 36);
             this.cboCountry.TabIndex = 4;
+            this.cboCountry.SelectedIndexChanged += new System.EventHandler(this.cboCountry_SelectedIndexChanged);
             // 
             // txtMemberName
             // 
