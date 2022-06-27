@@ -17,17 +17,20 @@ public partial class frmLogin : Form
         string email = txtEmail.Text;
         string password = txtPassword.Text;
 
-        Member loginMember = memberServices.Login(email, password);
-        if (loginMember != null)
+        try
         {
-            this.Hide();
-            frmManagement frmManagement = new frmManagement(loginMember);
-            frmManagement.ShowDialog();
-            this.Show();
+            Member loginMember = memberServices.Login(email, password);
+            if (loginMember != null)
+            {
+                this.Hide();
+                frmManagement frmManagement = new frmManagement(loginMember);
+                frmManagement.ShowDialog();
+                this.Show();
+            }
         }
-        else
+        catch (Exception ex)
         {
-            MessageBox.Show("Incorrect Email or Password!");
+            MessageBox.Show(ex.Message, "Login");
         }
     }
 }

@@ -1,14 +1,4 @@
 ﻿using BusinessObject;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using BusinessObject.Services;
 using DataAccess.Entities;
 
 namespace MyStoreWinApp
@@ -19,22 +9,62 @@ namespace MyStoreWinApp
 
         public bool IsUpdate { get; set; }
         public Member memberInfo { get; set; }
+
+        Dictionary<string, string[]> CountryToCity = new Dictionary<string, string[]>();
         public frmDetails()
         {
             InitializeComponent();
+
+            CountryToCity["Vietnam"] = new string[] {
+                "Hanoi", 
+                "Ho Chi Minh", 
+                "Da Nang",
+                "Hue",
+            };
+            CountryToCity["America"] = new string[] { 
+                "New York", 
+                "Washington", 
+                "Los Angeles", 
+                "San Francisco", 
+                "Las Vegas",
+                "Chicago",
+            };
+            CountryToCity["China"] = new string[]
+            {
+                "Shanghai",
+                "Beijing",
+                "Guangzhou",
+                "Tianjin",
+                "Chongqing",
+            };
+            CountryToCity["Australia"] = new string[]
+            {
+                "Sydney",
+                "Melbourne",
+                "Perth",
+                "Brisbane",
+            };
         }
 
         private void frmDetails_Load(object sender, EventArgs e)
         {
-            cboCity.SelectedIndex = 0;
-            cboCountry.SelectedIndex = 0;
-            if (IsUpdate == true)
+            try
             {
-                txtMemberName.Text = memberInfo.MemberName;
-                txtEmail.Text = memberInfo.Email;
-                txtPassword.Text = memberInfo.Password;
-                cboCity.Text = memberInfo.City;
-                cboCountry.Text = memberInfo.Country;
+                cboCountry.SelectedIndex = 0;
+                LoadCityComboBox();
+                if (IsUpdate == true)
+                {
+                    txtMemberId.Text = memberInfo.MemberID.ToString();
+                    txtMemberName.Text = memberInfo.MemberName;
+                    txtEmail.Text = memberInfo.Email;
+                    txtPassword.Text = memberInfo.Password;
+                    cboCity.Text = memberInfo.City;
+                    cboCountry.Text = memberInfo.Country;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Load Details form");
             }
         }
         private void btnSave_Click(object sender, EventArgs e)
@@ -55,6 +85,7 @@ namespace MyStoreWinApp
                 }
                 else
                 {
+                    member.MemberID = int.Parse(txtMemberId.Text);
                     memberServices.UpdateMember(member);
                 }
                 Close();
@@ -67,9 +98,22 @@ namespace MyStoreWinApp
 
         private void btnCancel_Click(object sender, EventArgs e) => Close();
 
+        private void LoadCityComboBox()
+        {
+            cboCity.Items.Clear();
+            if (cboCountry.SelectedIndex >= 0)
+            {
+                string country = cboCountry.Text;
+                foreach (string city in CountryToCity[country])
+                {
+                    cboCity.Items.Add(city);
+                }
+                cboCity.SelectedIndex = 0;
+            }
+        }
         private void cboCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            LoadCityComboBox();
         }
 
         private void lblCountry_Click(object sender, EventArgs e)

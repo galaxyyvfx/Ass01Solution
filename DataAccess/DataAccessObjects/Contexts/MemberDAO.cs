@@ -1,11 +1,6 @@
 ﻿using DataAccess.Entities;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.DataAccessObjects.Contexts;
 
@@ -108,8 +103,8 @@ public class MemberDAO : BaseDAO
     public void InsertMember(Member member)
     {
         // CODE HERE
-        string sql = "insert Member values(@MemberId, @MemberName, " +
-            "@Email, @Password, @City, @Country)";
+        string sql = "insert Member(MemberName, Email, Password, City, Country) " +
+            "values (@MemberName, @Email, @Password, @City, @Country)";
         try
         {
             Member checkMember = GetMemberById(member.MemberID);

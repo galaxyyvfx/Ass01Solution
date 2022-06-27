@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.grpDetails = new System.Windows.Forms.GroupBox();
+            this.lblMemberId = new System.Windows.Forms.Label();
+            this.txtMemberId = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.cboCity = new System.Windows.Forms.ComboBox();
@@ -46,6 +48,8 @@
             // 
             // grpDetails
             // 
+            this.grpDetails.Controls.Add(this.lblMemberId);
+            this.grpDetails.Controls.Add(this.txtMemberId);
             this.grpDetails.Controls.Add(this.btnCancel);
             this.grpDetails.Controls.Add(this.btnSave);
             this.grpDetails.Controls.Add(this.cboCity);
@@ -64,8 +68,26 @@
             this.grpDetails.TabIndex = 0;
             this.grpDetails.TabStop = false;
             // 
+            // lblMemberId
+            // 
+            this.lblMemberId.AutoSize = true;
+            this.lblMemberId.Location = new System.Drawing.Point(332, 111);
+            this.lblMemberId.Name = "lblMemberId";
+            this.lblMemberId.Size = new System.Drawing.Size(84, 20);
+            this.lblMemberId.TabIndex = 13;
+            this.lblMemberId.Text = "Member ID";
+            // 
+            // txtMemberId
+            // 
+            this.txtMemberId.Enabled = false;
+            this.txtMemberId.Location = new System.Drawing.Point(418, 108);
+            this.txtMemberId.Name = "txtMemberId";
+            this.txtMemberId.Size = new System.Drawing.Size(180, 27);
+            this.txtMemberId.TabIndex = 12;
+            // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnCancel.Location = new System.Drawing.Point(351, 162);
             this.btnCancel.Name = "btnCancel";
@@ -77,6 +99,7 @@
             // 
             // btnSave
             // 
+            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnSave.Location = new System.Drawing.Point(153, 162);
             this.btnSave.Name = "btnSave";
@@ -98,6 +121,11 @@
             // cboCountry
             // 
             this.cboCountry.FormattingEnabled = true;
+            this.cboCountry.Items.AddRange(new object[] {
+            "Vietnam",
+            "America",
+            "China",
+            "Australia"});
             this.cboCountry.Location = new System.Drawing.Point(418, 19);
             this.cboCountry.Name = "cboCountry";
             this.cboCountry.Size = new System.Drawing.Size(180, 28);
@@ -208,5 +236,7 @@
         private Label lblMemberName;
         private Button btnCancel;
         private Button btnSave;
+        private Label lblMemberId;
+        private TextBox txtMemberId;
     }
 }
