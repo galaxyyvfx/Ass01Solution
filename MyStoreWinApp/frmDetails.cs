@@ -16,22 +16,16 @@ namespace MyStoreWinApp
 
         private void frmDetails_Load(object sender, EventArgs e)
         {
-            try
+            cboCity.SelectedIndex = 0;
+            cboCountry.SelectedIndex = 0;
+            if (IsUpdate == true)
             {
-                if (IsUpdate == true)
-                {
-                    txtMemberName.Text = memberInfo.MemberName;
-                    txtEmail.Text = memberInfo.Email;
-                    txtPassword.Text = memberInfo.Password;
-                    txtCity.Text = memberInfo.City;
-                    txtCountry.Text = memberInfo.Country;
-                }
-            } 
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Form load");
+                txtMemberName.Text = memberInfo.MemberName;
+                txtEmail.Text = memberInfo.Email;
+                txtPassword.Text = memberInfo.Password;
+                cboCity.Text = memberInfo.City;
+                cboCountry.Text = memberInfo.Country;
             }
-            
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -42,8 +36,8 @@ namespace MyStoreWinApp
                     MemberName = txtMemberName.Text,
                     Email = txtEmail.Text,
                     Password = txtPassword.Text,
-                    City = txtCity.Text,
-                    Country = txtCountry.Text,
+                    City = cboCity.Text,
+                    Country = cboCountry.Text,
                 };
                 if (IsUpdate == false)
                 {

@@ -17,8 +17,8 @@ public partial class frmManagement : Form
         txtMemberName.Text = string.Empty;
         txtEmail.Text = string.Empty;
         txtPassword.Text = string.Empty;
-        txtCity.Text = string.Empty;
-        txtCountry.Text = string.Empty;
+        cboCity.SelectedIndex = 0;
+        cboCountry.SelectedIndex = 0;
     }
     private Member GetMemberObject()
     {
@@ -31,8 +31,8 @@ public partial class frmManagement : Form
                 MemberName = txtMemberName.Text,
                 Email = txtEmail.Text,
                 Password = txtPassword.Text,
-                City = txtCity.Text,
-                Country = txtCountry.Text,
+                City = cboCity.Text,
+                Country = cboCountry.Text,
             };
         }
         catch (Exception ex)
@@ -48,20 +48,6 @@ public partial class frmManagement : Form
         {
             source = new BindingSource();
             source.DataSource = list;
-
-            txtMemberId.DataBindings.Clear();
-            txtMemberName.DataBindings.Clear();
-            txtEmail.DataBindings.Clear();
-            txtPassword.DataBindings.Clear();
-            txtCity.DataBindings.Clear();
-            txtCountry.DataBindings.Clear();
-
-            txtMemberId.DataBindings.Add("Text", source, "MemberID");
-            txtMemberName.DataBindings.Add("Text", source, "MemberName");
-            txtCountry.DataBindings.Add("Text", source, "Country");
-            txtCity.DataBindings.Add("Text", source, "City");
-            txtEmail.DataBindings.Add("Text", source, "Email");
-            txtPassword.DataBindings.Add("Text", source, "Password");
 
             dgvMemberList.DataSource = null;
             dgvMemberList.DataSource = list;
@@ -162,8 +148,8 @@ public partial class frmManagement : Form
             try
             {
                 var searchNames = memberServices.SearchMemberByName(txtMemberName.Text);
-                var searchCity = memberServices.FilterMemberByCity(txtCity.Text);
-                var searchCountry = memberServices.FilterMemberByCountry(txtCountry.Text);
+                var searchCity = memberServices.FilterMemberByCity(cboCity.Text.Trim());
+                var searchCountry = memberServices.FilterMemberByCountry(cboCountry.Text.Trim());
                 var resultSet = from names in searchNames
                                 join cities in searchCity
                                     on names.MemberID equals cities.MemberID
