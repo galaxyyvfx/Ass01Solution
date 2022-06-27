@@ -15,7 +15,7 @@ namespace MyStoreWinApp
 {
     public partial class frmDetails : Form
     {
-        private IMemberServices memberServices = new MemberServices();
+        public IMemberServices memberServices { get; set; }
 
         public bool IsUpdate { get; set; }
         public Member memberInfo { get; set; }
